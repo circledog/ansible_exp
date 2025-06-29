@@ -1,4 +1,4 @@
-lsblk #列出設備訊息/n
+lsblk #列出設備訊息\n
 ssh-keygen #生成鑰匙對
 eval "$(ssh-agent -s)" #開啟ssh-agent
 ssh-add ~/.ssh/key.pem #將key.pem放入快取列表
