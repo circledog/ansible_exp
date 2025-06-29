@@ -1,4 +1,4 @@
 - name: Jinja2 教學文件
   template:
-    src: templates\jinja2-demo.md.j2
+    src: jinja2-demo.md.j2
     dest: /tmp/jinja2-demo-{{ inventory_hostname }}.md
