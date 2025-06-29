@@ -1,0 +1,6 @@
+---
+- name: Deploy static web site
+  hosts: local
+  become: yes
+  roles:
+    - role: j2example
