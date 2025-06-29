@@ -1,0 +1,13 @@
+# 建立系統使用者與同名群組
+- name: Create deploy user
+  user:
+    name: deploy
+    comment: "CI/CD account"
+    shell: /bin/bash
+    create_home: yes
+
+# 確保組織群組存在
+- name: Ensure developers group
+  group:
+    name: developers
+    state: present

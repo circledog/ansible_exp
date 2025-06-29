@@ -1,0 +1,12 @@
+# 安裝最新版 git（Ubuntu）
+- name: Install git (apt)
+  apt:
+    name: git
+    state: latest
+    update_cache: yes    # 等同 apt update
+
+# 移除 httpd（CentOS）
+- name: Remove httpd (yum)
+  yum:
+    name: httpd
+    state: absent

@@ -1,0 +1,11 @@
+# shell：允許管線與重導向
+- name: Check disk usage >80 %
+  shell: "df -h | awk '$5+0 > 80 {print $0}'"
+  register: disk_warn
+  changed_when: false
+
+# command：純執行二進位檔，較安全
+- name: Show hostname
+  command: hostname
+  register: host_name
+  changed_when: false

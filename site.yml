@@ -1,0 +1,6 @@
+---
+- name: Deploy static web site
+  hosts: all_hosts
+  become: yes
+  roles:
+    - role: nginx_site

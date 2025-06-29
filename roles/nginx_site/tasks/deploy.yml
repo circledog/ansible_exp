@@ -1,0 +1,15 @@
+---
+- name: Set correct web_root
+  set_fact:
+    web_root: "{{ (ansible_os_family == 'Debian')
+                  | ternary('/var/www/html',
+                            '/usr/share/nginx/html') }}"
+
+- name: Deploy index.html
+  template:
+    src: index.html
+    dest: "{{ web_root }}/index.html"
+    owner: "{{ (ansible_os_family == 'Debian') | ternary('www-data','nginx') }}"
+    group: "{{ (ansible_os_family == 'Debian') | ternary('www-data','nginx') }}"
+    mode: "0644"
+  notify: Restart nginx

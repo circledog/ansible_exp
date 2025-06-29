@@ -1,0 +1,16 @@
+# 先安裝 ansible-galaxy collection install kubernetes.core
+# 確保 demo namespace 存在
+- name: Create demo namespace
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: Namespace
+      metadata:
+        name: demo
+
+# 套用 Deployment（從檔案載入）
+- name: Deploy Nginx app
+  kubernetes.core.k8s:
+    state: present
+    definition: "{{ lookup('file', 'files/nginx-deploy.yaml') }}"

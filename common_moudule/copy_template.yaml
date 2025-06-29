@@ -1,0 +1,14 @@
+# 將本地 static.conf 複製到遠端
+- name: Deploy Nginx static conf
+  copy:
+    src: files/static.conf
+    dest: /etc/nginx/conf.d/static.conf
+    owner: root
+    mode: "0644"
+
+# 使用 Jinja2 變數產生設定檔
+- name: Render app.conf from template
+  template:
+    src: templates/app.conf.j2
+    dest: /etc/myapp/app.conf
+    mode: "0640"

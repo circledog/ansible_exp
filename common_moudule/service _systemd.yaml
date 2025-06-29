@@ -1,0 +1,13 @@
+# 傳統 sysv 或 systemd 通吃
+- name: Ensure nginx running
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+
+# 若需設定自訂 Unit 檔後重新載入
+- name: Reload systemd & restart myapp
+  systemd:
+    daemon_reload: yes
+    name: myapp
+    state: restarted
