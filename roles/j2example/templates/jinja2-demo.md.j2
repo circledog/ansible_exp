@@ -1,0 +1,37 @@
+{# -----------------------------------------------------------
+   Jinja2 教學範本 ‧ jinja2-demo.md.j2
+   -----------------------------------------------------------
+   - Jinja 變數 {{ like_this }}
+   - 條件 if / else
+   - 迴圈 for
+   - 過濾器 | filter
+   - lookup / vars / hostvars
+#}
+
+# Jinja2 在 Ansible 的角色
+Jinja2 是 **範本引擎**，Ansible 依靠它將 *變數* 套用到文字／設定檔中。  
+最常見場景：`template:` 模組 → 讀取 *.j2 → 渲染 → 複製到受管主機。
+
+---
+
+## 1. 環境基本資訊  
+- **受管主機** : `{{ inventory_hostname }}`  
+- **作業系統** : `{{ ansible_os_family }} {{ ansible_distribution_major_version }}`  
+- **目前日期** : `{{ ansible_date_time.iso8601 }}`  
+
+{# 透過 filters 做簡易轉換 #}
+- **大寫主機名**: `{{ inventory_hostname | upper }}`  
+- **小寫主機名**: `{{ inventory_hostname | lower }}`  
+
+---
+
+## 2. 條件判斷示例  
+
+```yaml
+{% if ansible_os_family == "Debian" %}
+apt update && apt install -y nginx
+{% elif ansible_os_family == "RedHat" %}
+yum install -y nginx
+{% else %}
+# 其他發行版請自行安裝
+{% endif %}
